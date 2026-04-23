@@ -86,12 +86,12 @@
       <button class="btn primary" onclick="localStorage.setItem('monarch_cookie_choice','all');document.getElementById('cookieBanner').classList.add('hide')">Tout accepter</button>
     </div>
   </div>
-  <audio id="backgroundMusic" autoplay muted loop>
-  <source src="assets/audio/paulyudin-background-music-478744.mp3" type="audio/mpeg">
+  <audio id="backgroundMusic" loop>
+  <source src="https://thivand-alt.github.io/monarch-v5-complete/frontend/assets/audio/paulyudin-background-music-478744.mp3" type="audio/mpeg">
 </audio>
+
 <button onclick="
   const music = document.getElementById('backgroundMusic');
-  music.muted = false;
   music.volume = 1;
   music.play();
 ">
@@ -100,5 +100,16 @@
   <script src="config.runtime.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="js/main.js"></script>
+  <div style="margin-top:40px;">
+  <h2>🤖 Planificateur IA</h2>
+
+  <textarea id="prompt" placeholder="Décris ton road trip idéal..." style="width:100%; height:100px;"></textarea>
+
+  <button onclick="askAI()" style="margin-top:10px;">
+    Générer avec l’IA
+  </button>
+
+  <div id="result" style="margin-top:20px;"></div>
+</div>
 </body>
 </html>

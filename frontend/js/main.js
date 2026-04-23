@@ -366,3 +366,28 @@ document.addEventListener("DOMContentLoaded", () => {
   contactIntake();
   loadAdmin();
 });
+async function askAI() {
+  const prompt = document.getElementById("prompt").value;
+
+  const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer TON_API_KEY"
+    },
+    body: JSON.stringify({
+      model: "gpt-4o-mini",
+      messages: [
+        {
+          role: "user",
+          content: prompt
+        }
+      ]
+    })
+  });
+
+  const data = await response.json();
+
+  document.getElementById("result").innerText =
+    data.choices[0].message.content;
+}
