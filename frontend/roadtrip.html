@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MONARCH SUPERCARS</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <img class="logo" src="assets/Logo Monarch.jpeg" alt="MONARCH SUPERCARS" />
+      <div>
+        <h1>MONARCH SUPERCARS</h1>
+        <small>Road trips • Events • Partners</small>
+      </div>
+    </div>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="partners.html">Partenaires</a>
+      <a href="events.html">Event</a>
+      <a href="roadtrip.html">Road Trip</a>
+      <a href="contact.html">Contact</a>
+      <a href="admin.html">Admin</a>
+    </nav>
+    <div class="auth-links">
+      <button id="soundToggle" title="Activer/désactiver la musique">🔊</button>
+      <a class="btn secondary" href="login.html">Connexion</a>
+      <a class="btn primary" href="register.html">Inscription</a>
+    </div>
+  </header>
+
+<section class="container grid-2">
+  <div class="card">
+    <h2>Road Trip IA</h2>
+    <form id="roadtripForm">
+      <label>Lieu de départ — Pays</label>
+      <select name="country" required>
+        <option>France</option><option>Belgique</option><option>Suisse</option><option>Allemagne</option><option>Italie</option>
+      </select>
+      <label>Département / Région</label>
+      <input name="department" required />
+      <label>Adresse détaillée</label>
+      <input name="start_address" required />
+      <hr style="margin:20px 0;border:none;border-top:1px solid var(--border)">
+      <label>Lieu d'arrivée — Pays</label>
+      <select name="arrival_country" required>
+        <option>France</option><option>Belgique</option><option>Suisse</option><option>Allemagne</option><option>Italie</option>
+      </select>
+      <label>Département / Région (arrivée)</label>
+      <input name="arrival_department" required />
+      <label>Adresse d'arrivée</label>
+      <input name="arrival_address" required />
+      <hr style="margin:20px 0;border:none;border-top:1px solid var(--border)">
+      <label>Nombre d'étapes</label>
+      <select name="stages" required>
+        <option value="">Choisir...</option>
+        <option value="1">1 étape</option>
+        <option value="2">2 étapes</option>
+        <option value="3">3 étapes</option>
+        <option value="4">4 étapes</option>
+        <option value="5">5 étapes</option>
+        <option value="6">6 étapes</option>
+        <option value="7">7 étapes</option>
+        <option value="8">8 étapes</option>
+        <option value="9">9 étapes</option>
+        <option value="10">10 étapes</option>
+        <option value="11">11 étapes</option>
+        <option value="12">12 étapes</option>
+        <option value="13">13 étapes</option>
+        <option value="14">14 étapes</option>
+        <option value="15">15 étapes</option>
+        <option value="16">16 étapes</option>
+        <option value="17">17 étapes</option>
+        <option value="18">18 étapes</option>
+        <option value="19">19 étapes</option>
+        <option value="20">20 étapes</option>
+      </select>
+      <label>Date de départ</label>
+      <input name="departure_date" type="date" required />
+      <label>Nombre de jours</label>
+      <select name="days"></select>
+      <label>Escale(s) / arrêts</label>
+      <select name="stops_per_day"></select>
+      <label>Nombre de personnes par voiture</label>
+      <select name="people_per_car"></select>
+      <label>Préférences</label>
+      <textarea name="preferences" placeholder="Vues panoramiques, gastronomie, hôtels premium, budget..."></textarea>
+      <button class="btn primary" type="submit">ENTER</button>
+    </form>
+  </div>
+  <div class="card">
+    <h3>Résultat</h3>
+    <div id="roadtripSummary" class="summary-box muted">Le roadbook s’affichera ici.</div>
+    <div class="inline-actions" style="margin-top:14px">
+      <button class="btn secondary" onclick="window.print()">Imprimer le roadbook</button>
+      <button class="btn secondary" id="openGoogleRouteBtn">Ouvrir Google Maps</button>
+      <button class="btn secondary" id="openWazeBtn">Ouvrir Waze</button>
+    </div>
+  </div>
+</section>
+<section class="container">
+  <div id="roadtripStops" class="list"></div>
+</section>
+
+  <div class="footer">
+    <div class="container">
+      <p>© MONARCH SUPERCARS — plateforme premium automobile.</p>
+      <p>
+        <a href="legal/mentions-legales.html">Mentions légales</a> •
+        <a href="legal/privacy.html">Confidentialité</a> •
+        <a href="legal/cgu-cgv.html">CGU / CGV</a> •
+        <a href="legal/cookies.html">Cookies</a>
+      </p>
+    </div>
+  </div>
+  <div id="cookieBanner" class="cookie-banner hide">
+    <div>
+      <strong>Cookies & mesure d’audience</strong>
+      <div class="muted">Le site prévoit un bandeau de consentement. Les catégories analytiques et marketing doivent rester désactivées par défaut tant que tu n’as pas branché une CMP conforme.</div>
+    </div>
+    <div class="inline-actions">
+      <button class="btn secondary" onclick="localStorage.setItem('monarch_cookie_choice','essential');document.getElementById('cookieBanner').classList.add('hide')">Essentiels</button>
+      <button class="btn primary" onclick="localStorage.setItem('monarch_cookie_choice','all');document.getElementById('cookieBanner').classList.add('hide')">Tout accepter</button>
+    </div>
+  </div>
+  <audio id="backgroundMusic" loop preload="metadata">
+    <source src="assets/audio/background-music.mp3" type="audio/mpeg">
+  </audio>
+  <script src="config.runtime.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
