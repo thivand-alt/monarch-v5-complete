@@ -86,9 +86,12 @@
       <button class="btn primary" onclick="localStorage.setItem('monarch_cookie_choice','all');document.getElementById('cookieBanner').classList.add('hide')">Tout accepter</button>
     </div>
   </div>
-  <audio id="backgroundMusic" loop preload="metadata">
-    <source src="assets/audio/background-music.mp3" type="audio/mpeg">
-  </audio>
+  <audio id="backgroundMusic" autoplay muted loop>
+  <source src="assets/audio/paulyudin-background-music-478744.mp3" type="audio/mpeg">
+</audio>
+<button onclick="document.getElementById('backgroundMusic').muted = false">
+  🔊 Activer le son
+</button>
   <script src="config.runtime.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="js/main.js"></script>
