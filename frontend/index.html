@@ -89,7 +89,12 @@
   <audio id="backgroundMusic" autoplay muted loop>
   <source src="assets/audio/paulyudin-background-music-478744.mp3" type="audio/mpeg">
 </audio>
-<button onclick="document.getElementById('backgroundMusic').muted = false">
+<button onclick="
+  const music = document.getElementById('backgroundMusic');
+  music.muted = false;
+  music.volume = 0.6;
+  music.play();
+">
   🔊 Activer le son
 </button>
   <script src="config.runtime.js"></script>
